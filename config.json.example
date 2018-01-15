@@ -1,0 +1,11 @@
+{
+  "pdosn": "mysql:host=localhost;dbname=cloudflarestats;charset=utf8mb4",
+  "username": "",
+  "password": "",
+  "email": "",
+  "apikey": "",
+  "zones": [
+  	"zone1.com",
+  	"zone2.net"
+  ]
+}

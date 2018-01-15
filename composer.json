@@ -1,0 +1,16 @@
+{
+    "name": "jorgenphi/cloudflare2db",
+    "description": "Stores Cloudflare statistics to a SQL database",
+    "type": "project",
+    "require": {
+        "cloudflare/sdk": "^1.0",
+        "influxdb/influxdb-php": "^1.14"
+    },
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Jorgen Phillips",
+            "email": "jorgenphillips@gmail.com"
+        }
+    ]
+}
