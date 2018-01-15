@@ -47,7 +47,7 @@ foreach ($config->zones as $zone) {
         continue;
     }
     echo 'Processing '.$zone.'...'.PHP_EOL;
-    $stats = $zones->getAnalyticsDashboard($zoneID, '-1440', '0', true); // This varaible affects stat precision. Do -525600 to get full stats initially, then set to -1440
+    $stats = $zones->getAnalyticsDashboard($zoneID, '-525600', '0', true); // This varaible affects stat precision. Do -525600 to get full stats initially, then set to -1440
     $stats = json_decode(json_encode($stats), true);
 
     foreach ($stats['timeseries'] as $stat) {
@@ -56,7 +56,39 @@ foreach ($config->zones as $zone) {
                 'requests',
                 $stat['requests']['all'],
                 ['host' => $zone],
-                ['ssl_encrypted' => $stat['requests']['ssl']['encrypted'], 'bandwidth' => $stat['bandwidth']['all']],
+                ['ssl_encrypted' => $stat['requests']['ssl']['encrypted'], 'cached' => $stat['requests']['cached'], 'uncached' => $stat['requests']['uncached']],
+                strtotime($stat['since'])
+            ));
+        array_push($points, 
+            new InfluxDB\Point(
+                'bandwidth',
+                $stat['bandwidth']['all'],
+                ['host' => $zone],
+                ['ssl_encrypted' => $stat['bandwidth']['ssl']['encrypted'], 'cached' => $stat['bandwidth']['cached'], 'uncached' => $stat['bandwidth']['uncached']],
+                strtotime($stat['since'])
+            ));
+        array_push($points, 
+            new InfluxDB\Point(
+                'threats',
+                $stat['threats']['all'],
+                ['host' => $zone],
+                [],
+                strtotime($stat['since'])
+            ));
+        array_push($points, 
+            new InfluxDB\Point(
+                'pageviews',
+                $stat['pageviews']['all'],
+                ['host' => $zone],
+                [],
+                strtotime($stat['since'])
+            ));
+        array_push($points, 
+            new InfluxDB\Point(
+                'uniques',
+                $stat['uniques']['all'],
+                ['host' => $zone],
+                [],
                 strtotime($stat['since'])
             ));
     }

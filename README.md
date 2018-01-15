@@ -7,3 +7,8 @@ Scrapes cloudflare analytics information (bandwidth, and requests) into an Influ
 3. Define your Influx database credentials & Cloudflare API settings in config.json
 4. Test run `php scrape.php` in your console
 5. Add `php scrape.php` to your crontab.
+
+## Usage
+After testing that your cron is running, it is easy to add the data to a [Grafana instance](http://docs.grafana.org/installation/debian/). Add the [InfluxDB as a Grafana data source](http://docs.grafana.org/features/datasources/influxdb/), and the cloudflare stats will now be visible in your dashboard editor.
+
+![Example](https://i.imgur.com/JrlokZV.png)
