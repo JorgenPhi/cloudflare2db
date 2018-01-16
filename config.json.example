@@ -1,7 +1,6 @@
 {
-  "pdosn": "mysql:host=localhost;dbname=cloudflarestats;charset=utf8mb4",
-  "username": "",
-  "password": "",
+  "influxhost": "127.0.0.1",
+  "influxport": 8086,
   "email": "",
   "apikey": "",
   "zones": [
